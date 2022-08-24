@@ -54,7 +54,13 @@ public class AppointmentService {
                 "hours: "+appointment.getHours()+"\n" +
                 "total: "+appointment.getTotal()+"\n Have fun!";
 
+        String body1="Your Appointment with "+user.getUsername()+" confirmed\n" +
+                "location: "+appointment.getLocation()+"\n" +
+                "hours: "+appointment.getHours()+"\n" +
+                "total: "+appointment.getTotal()+"\n Have fun!";
+
         service.sendEmail(user.getEmail(),title,body);
+        service.sendEmail(person.getEmail(),title,body1);
         appointmentRepository.save(appointment);
         //send an email?
     }

@@ -22,14 +22,14 @@ public class SkillController {
 
     private final SkillService skillService;
 
-    @GetMapping
+    @GetMapping("/viewAllSkills")
     public ResponseEntity<List> getSkills(){
         List<Skill> skills=skillService.getAllSkills();
         return ResponseEntity.status(200).body(skills);
     }
 
 
-    @PostMapping("/viewAllSkills")
+    @PostMapping("/addSkill")
     public ResponseEntity<ApiResponse> addSkill(@RequestBody @Valid Skill skill){
         skillService.post(skill);
         return ResponseEntity.status(201).body(new ApiResponse("skill added !",201));
