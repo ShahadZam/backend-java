@@ -85,7 +85,6 @@ public class UserService {
             user = userRepository.findById(value.getPersonId()).get();
             personList.add(format(user));
         }
-        System.out.println(personList);
         return personList;
 
     }

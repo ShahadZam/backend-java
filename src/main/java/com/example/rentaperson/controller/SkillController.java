@@ -48,11 +48,11 @@ public class SkillController {
     }
 
 
-    @GetMapping("/bySkill/{skill}")
-    public ResponseEntity<List> getSkillsBySkill(@PathVariable String skill){
-        List<PersonAndSkill> skills=skillService.getPBySkills(skill);
-        return ResponseEntity.status(200).body(skills);
-    }
+//    @GetMapping("/bySkill/{skill}")
+//    public ResponseEntity<List> getSkillsBySkill(@PathVariable String skill){
+//        List<PersonAndSkill> skills=skillService.getPBySkills(skill);
+//        return ResponseEntity.status(200).body(skills);
+//    }
 
     @GetMapping("/personSkill/{username}")
     public ResponseEntity<String> getPersonSkills(@PathVariable String username){

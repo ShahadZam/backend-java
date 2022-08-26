@@ -7,8 +7,6 @@ import com.example.rentaperson.model.User;
 import com.example.rentaperson.repository.AppointmentRepository;
 import com.example.rentaperson.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,8 +17,6 @@ import java.util.List;
 public class AppointmentService {
     private final AppointmentRepository appointmentRepository;
     private final UserRepository userRepository;
-
-    private final SendEmailService service;
 
 
 
@@ -48,19 +44,6 @@ public class AppointmentService {
 
 
         appointment.setConfirm(true);
-        String title="-Rent a person- Confirm your appointment";
-        String body="Your Appointment with "+person.getUsername()+" confirmed\n" +
-                "location: "+appointment.getLocation()+"\n" +
-                "hours: "+appointment.getHours()+"\n" +
-                "total: "+appointment.getTotal()+"\n Have fun!";
-
-        String body1="Your Appointment with "+user.getUsername()+" confirmed\n" +
-                "location: "+appointment.getLocation()+"\n" +
-                "hours: "+appointment.getHours()+"\n" +
-                "total: "+appointment.getTotal()+"\n Have fun!";
-
-        service.sendEmail(user.getEmail(),title,body);
-        service.sendEmail(person.getEmail(),title,body1);
         appointmentRepository.save(appointment);
         //send an email?
     }

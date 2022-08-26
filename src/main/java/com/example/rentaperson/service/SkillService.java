@@ -37,15 +37,15 @@ public class SkillService {
         return skills;
     }
 
-    public List<PersonAndSkill> getPBySkills(String skill){
-        List<Skill> skills=skillsRepository.findSkillBySkill(skill);
-        List<User> persons=new ArrayList<>();
-        for (int i = 0; i <skills.size() ; i++) {
-            persons.add(userRepository.getById(skills.get(i).getPersonId()));
-        }
-        List<PersonAndSkill> list=userService.getPersonsBySkill(persons);
-        return list;
-    }
+//    public List<PersonAndSkill> getPBySkills(String skill){
+//        List<Skill> skills=skillsRepository.findSkillBySkill(skill);
+//        List<User> persons=new ArrayList<>();
+//        for (int i = 0; i <skills.size() ; i++) {
+//            persons.add(userRepository.getById(skills.get(i).getPersonId()));
+//        }
+//        List<PersonAndSkill> list=userService.getPersonsBySkill(persons);
+//        return list;
+//    }
 
     public String getPersonSkills(String username){
         User user=userRepository.findUsersByUsername(username);
@@ -53,9 +53,7 @@ public class SkillService {
         return username+": "+ format(skills) ;
     }
 
-    public Skill findSkillByIdAndPersonID(Integer id,Integer id1){
-        return skillsRepository.findSkillByIdAndPersonId(id,id1);
-    }
+
 
 
 
