@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @AllArgsConstructor
@@ -29,6 +30,16 @@ public class Appointment {
 
     private Double total;
 
-    private boolean confirm=false;
+    @Pattern(regexp = "(new|confirmed|completed|canceled)",message = "status must be in (new|confirmed|completed|canceled)")
+    private String status;
+
+    private String date;
+
+    private String request;
+
+    //date
+    //disc?
+    //    private String status;
+    //new, confirmed, completed
 
 }

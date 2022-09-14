@@ -27,9 +27,15 @@ public class UserController {
         return ResponseEntity.status(201).body(new ApiResponse("register !",201));
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity welcome(@AuthenticationPrincipal User user) {
-        return ResponseEntity.status(200).body("Welcome "+ user.getUsername()+"!");
+        return ResponseEntity.status(200).body(new ApiResponse("Welcome "+ user.getUsername()+"!",200));
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity getUser(@AuthenticationPrincipal User user){
+        //user.setPassword("");
+        return ResponseEntity.status(200).body(user);
     }
 
     @GetMapping("/viewAll")

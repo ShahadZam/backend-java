@@ -45,14 +45,14 @@ public class AppointmentController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity updateApp(@RequestBody Appointment appointment){
-        appointmentService.updateApp(appointment);
-        return ResponseEntity.status(200).body("Appointment update");
+    public ResponseEntity updateApp(@AuthenticationPrincipal User user,@RequestBody Appointment appointment){
+        appointmentService.updateApp(user,appointment);
+        return ResponseEntity.status(200).body("Appointment updated");
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<ApiResponse> deleteApp( @PathVariable Integer id){
-        appointmentService.deleteApp(id);
+    public ResponseEntity<ApiResponse> deleteApp(@AuthenticationPrincipal User user, @PathVariable Integer id){
+        appointmentService.deleteApp(user,id);
         return ResponseEntity.status(201).body(new ApiResponse("Appointment deleted !",201));
     }
 

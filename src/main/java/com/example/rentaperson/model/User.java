@@ -3,6 +3,7 @@ package com.example.rentaperson.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -42,9 +43,14 @@ public class User implements UserDetails {
     @NotEmpty(message = "city cannot be empty")
     private String city;
 
-    private String description;
+    private String description;//provider
 
-    private Double pricePerHour = Double.valueOf(0);
+    private Double pricePerHour = Double.valueOf(0);//provider
+
+    private String categories;//provider
+
+    @URL(message = "image must be a URL")
+    private String image;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

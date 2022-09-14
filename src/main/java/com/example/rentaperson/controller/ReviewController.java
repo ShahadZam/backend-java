@@ -38,15 +38,22 @@ public class ReviewController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity updateReview(@RequestBody Review review){
-        reviewService.updateReview(review);
-        return ResponseEntity.status(200).body("Review update");
+    public ResponseEntity updateReview(@AuthenticationPrincipal User user,@RequestBody Review review){
+        if(reviewService.updateReview(user,review))
+        return ResponseEntity.status(200).body(new ApiResponse("Review updated !",200));
+        else{
+            return ResponseEntity.status(400).body(new ApiResponse("It's not your review !",400));
+
+        }
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<ApiResponse> deleteReview( @PathVariable Integer id){
-        reviewService.deleteReview(id);
-        return ResponseEntity.status(201).body(new ApiResponse("Review deleted !",201));
+    public ResponseEntity<ApiResponse> deleteReview( @AuthenticationPrincipal User user,@PathVariable Integer id){
+        if(reviewService.deleteReview(user,id))
+        return ResponseEntity.status(200).body(new ApiResponse("Review deleted !",200));
+        else
+            return ResponseEntity.status(400).body(new ApiResponse("It's not your review  !",400));
+
     }
 
     @GetMapping("/reviewByPerson/{username}")

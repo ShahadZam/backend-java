@@ -76,6 +76,7 @@ public class SkillService {
         skillsRepository.save(skill);
     }
 
+
     public void updateSkill(Integer id,String skill, User user){//princible
        Skill skill1 = skillsRepository.findSkillByIdAndPersonId(id,user.getId());
        skill1.setSkill(skill);

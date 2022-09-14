@@ -12,5 +12,7 @@ public class PostAppointment {
    private String location;
     private Integer hours;
     private Double total;
-    private boolean confirm;
+    private String status;
+    private String date;
+    private String request;
 }

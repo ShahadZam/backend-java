@@ -36,7 +36,7 @@ public class ReviewService {
         if(person==null)
             return false;
         Appointment appointment=appointmentRepository.
-                findAppointmentByUserIdAndPersonIdAndConfirm(user.getId(),person.getId(),true);
+                findAppointmentByUserIdAndPersonIdAndStatus(user.getId(),person.getId(),"completed");
         if(appointment==null)
             return false;
         review.setUserId(user.getId());
@@ -45,16 +45,22 @@ public class ReviewService {
         return true;
     }
 
-    public void updateReview(Review review) {
+    public boolean updateReview(User user,Review review) {
+        if(!(user.getId().equals(review.getUserId())))
+            return false;
         Review review1=reviewRepository.getById(review.getId());
         review1.setMessage(review.getMessage());
         review1.setRate(review.getRate());
         reviewRepository.save(review1);
+        return true;
     }
 
-    public void deleteReview(Integer id) {
+    public boolean deleteReview(User user,Integer id) {
+        if(!(user.getId().equals(id)))
+            return false;
         Review review=reviewRepository.getById(id);
         reviewRepository.delete(review);
+        return true;
     }
 
     public List<Rate> getPersonReviews(String username) {

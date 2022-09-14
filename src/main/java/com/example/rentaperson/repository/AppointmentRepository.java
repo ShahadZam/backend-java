@@ -11,19 +11,24 @@ public interface AppointmentRepository extends JpaRepository<Appointment,Integer
 
     List<Appointment> findAppointmentByPersonId(Integer id);
 
-    List<Appointment> findAppointmentByPersonIdAndConfirm(Integer id,boolean c);
+    List<Appointment> findAppointmentByPersonIdAndStatus(Integer id,String s);
 
-    Appointment findAppointmentByUserIdAndPersonIdAndConfirm(Integer Uid,Integer Pid,boolean c);
+    Appointment findAppointmentByUserIdAndPersonIdAndStatus(Integer Uid,Integer Pid,String s);
 
 
-    List<Appointment> findAppointmentByUserIdAndConfirm(Integer id,boolean c);
+    List<Appointment> findAppointmentByUserIdAndStatus(Integer id,String s);
+
+
 
 
     List<Appointment> findAppointmentByUserId(Integer id);
 
-    Appointment findAppointmentByPersonIdAndIdAndConfirm(Integer pid,Integer id,boolean c);
+    Appointment findAppointmentByPersonIdAndIdAndStatus(Integer pid,Integer id,String s);
 
-    Appointment findAppointmentById(Integer id);
+    Appointment findAppointmentByIdAndUserId(Integer id,Integer Uid);
+
+    Appointment findAppointmentByPersonIdAndId(Integer id,Integer Uid);
+
 
 
 }
